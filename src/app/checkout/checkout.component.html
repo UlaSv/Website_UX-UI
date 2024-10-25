@@ -1,0 +1,367 @@
+<div class="card">
+    <p-stepper [linear]="true">
+        <p-stepperPanel header="Address">
+            <ng-template
+                pTemplate="content"
+                let-nextCallback="nextCallback"
+                let-index="index"
+            >
+                <div class="flex flex-column h-12rem">
+                    <p-card
+                        class="flex-auto flex justify-content-center align-items-center fit-content"
+                    >
+                        <div class="flex justify-content-between">
+                            <form [formGroup]="adressForm">
+                                <div>
+                                    <i
+                                        class="pi pi-home"
+                                        style="font-size: 2.5rem"
+                                    ></i>
+                                    <small class="manda"
+                                        >*All fields are mandatory!</small
+                                    >
+                                    <h4 id="help-address">
+                                        Please input your name, address the
+                                        parcel should be shipped to:
+                                    </h4>
+                                </div>
+                                <div class="flex mt-5">
+                                    <div class="field">
+                                        <p-floatLabel>
+                                            <input
+                                                id="firstName"
+                                                type="text"
+                                                formControlName="firstName"
+                                                pInputText
+                                                class="name"
+                                            />
+                                            <label for="firstName"
+                                                >*First Name</label
+                                            >
+                                        </p-floatLabel>
+                                        <small
+                                            class="p-error"
+                                            *ngIf="firstName!.touched && firstName!.errors?.['required']"
+                                            >Please enter your first
+                                            name!</small
+                                        >
+                                    </div>
+                                    <div class="field ml-5">
+                                        <p-floatLabel>
+                                            <input
+                                                id="lastName"
+                                                type="text"
+                                                formControlName="lastName"
+                                                pInputText
+                                                class="name"
+                                            />
+                                            <label for="lastName"
+                                                >*Last Name</label
+                                            >
+                                        </p-floatLabel>
+                                        <small
+                                            class="p-error"
+                                            *ngIf="lastName!.touched && lastName!.errors?.['required']"
+                                            >Please enter your last name!</small
+                                        >
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="field">
+                                        <p-floatLabel>
+                                            <input
+                                                id="street"
+                                                type="text"
+                                                formControlName="street"
+                                                pInputText
+                                                class="street"
+                                            />
+                                            <label for="street">*Street</label>
+                                        </p-floatLabel>
+                                        <small
+                                            class="p-error"
+                                            *ngIf="street!.touched && street!.errors?.['required']"
+                                            >Please enter your street!</small
+                                        >
+                                    </div>
+                                    <div class="field ml-5">
+                                        <p-floatLabel>
+                                            <input
+                                                id="streetNumber"
+                                                type="text"
+                                                formControlName="streetNumber"
+                                                class="nr"
+                                                pInputText
+                                            />
+                                            <label for="streetNumber"
+                                                >*No.</label
+                                            >
+                                        </p-floatLabel>
+                                        <div class="p-error">
+                                            <small
+                                                *ngIf="streetNumber!.touched && streetNumber!.errors?.['required']"
+                                            >
+                                                Sorry, you must enter your
+                                                street number!
+                                            </small>
+                                            <small
+                                                *ngIf="streetNumber!.dirty && streetNumber!.errors?.['pattern']"
+                                            >
+                                                Sorry, you must only enter
+                                                numbers!
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="flex mt-5"></div>
+                                    <div class="field">
+                                        <p-floatLabel>
+                                            <input
+                                                id="postalCode"
+                                                type="text"
+                                                formControlName="postalCode"
+                                                pInputText
+                                                class="location"
+                                            />
+                                            <label for="postalCode"
+                                                >*Postal Code</label
+                                            >
+                                        </p-floatLabel>
+                                        <div class="p-error">
+                                            <small
+                                                *ngIf="postalCode!.touched && postalCode!.errors?.['required']"
+                                            >
+                                                Sorry, you must enter your
+                                                postal number!
+                                            </small>
+                                            <small
+                                                *ngIf="postalCode!.dirty && postalCode!.errors?.['pattern']"
+                                            >
+                                                Sorry, you must only enter
+                                                numbers!
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="field ml-5">
+                                        <p-floatLabel>
+                                            <input
+                                                id="city"
+                                                type="text"
+                                                formControlName="city"
+                                                pInputText
+                                                class="location"
+                                            />
+                                            <label for="city">*City</label>
+                                        </p-floatLabel>
+                                        <small
+                                            class="p-error"
+                                            *ngIf="city!.touched && city!.errors?.['required']"
+                                        >
+                                            Please enter your city!</small
+                                        >
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <p-dropdown
+                                        formControlName="country"
+                                        [options]="countries"
+                                        optionLabel="name"
+                                        placeholder="*Country"
+                                    ></p-dropdown>
+                                    <small
+                                        class="p-error"
+                                        *ngIf="country!.touched && country!.errors?.['required']"
+                                        >Please select your country!</small
+                                    >
+                                </div>
+                                <div>
+                                    <h4>
+                                        If you want to automatically fill in
+                                        your registration information:
+                                    </h4>
+                                    <p-button
+                                        class="p-button-secondary"
+                                        (onClick)="fillAddress()"
+                                        label="Fill Address"
+                                        severity="secondary"
+                                    ></p-button>
+                                </div>
+                            </form>
+                        </div>
+                    </p-card>
+                    <div class="flex pt-4 justify-content-end">
+                        <p-button
+                            label="Next"
+                            icon="pi pi-arrow-right"
+                            iconPos="right"
+                            (onClick)="nextCallback.emit()"
+                            [disabled]="adressForm.invalid"
+                        >
+                        </p-button>
+                    </div>
+                </div>
+            </ng-template>
+        </p-stepperPanel>
+        <p-stepperPanel header="Delivery & Payment">
+            <ng-template
+                pTemplate="content"
+                let-prevCallback="prevCallback"
+                let-nextCallback="nextCallback"
+                let-index="index"
+            >
+                <div class="flex flex-column h-12rem">
+                    <p-card
+                        class="flex-auto flex justify-content-center align-items-center"
+                    >
+                        <div class="flex justify-content-between">
+                            <div class="col-6">
+                                <i
+                                    class="pi pi-box"
+                                    style="font-size: 2.5rem"
+                                ></i>
+                                <h3>Delivery Options</h3>
+                                <form [formGroup]="deliveryForm">
+                                    <p-listbox
+                                        [options]="deliveryOptions"
+                                        formControlName="deliveryOption"
+                                        [style]="{ width: '100%' }"
+                                        [listStyle]="{ 'max-height': '70%' }"
+                                        (ngModelChange)="change($event)"
+                                    >
+                                    </p-listbox>
+                                </form>
+                            </div>
+                            <div class="col-6">
+                                <i
+                                    class="pi pi-money-bill"
+                                    style="font-size: 2.5rem"
+                                ></i>
+                                <h3>Payment Methods</h3>
+                                <form [formGroup]="paymentForm">
+                                    <p-listbox
+                                        [options]="paymentOptions"
+                                        formControlName="paymentOption"
+                                        [style]="{ width: '100%' }"
+                                        [listStyle]="{ 'max-height': '70%' }"
+                                    >
+                                        <ng-template
+                                            let-option
+                                            pTemplate="item"
+                                        >
+                                            <i
+                                                [class]="option.icon"
+                                                style="margin-right: 10px"
+                                            ></i>
+                                            {{ option.label }}
+                                        </ng-template>
+                                    </p-listbox>
+                                </form>
+                            </div>
+                        </div>
+                    </p-card>
+
+                    <div class="flex pt-4 justify-content-between">
+                        <p-button
+                            label="Back"
+                            icon="pi pi-arrow-left"
+                            (onClick)="prevCallback.emit()"
+                        ></p-button>
+                        <p-button
+                            label="Next"
+                            icon="pi pi-arrow-right"
+                            iconPos="right"
+                            (onClick)="nextCallback.emit()"
+                            [disabled]="
+                                !(deliveryForm.valid && paymentForm.valid)
+                            "
+                        ></p-button>
+                    </div>
+                </div>
+            </ng-template>
+        </p-stepperPanel>
+        <p-stepperPanel header="Summary">
+            <ng-template
+                pTemplate="content"
+                let-prevCallback="prevCallback"
+                let-index="index"
+            >
+                <div class="flex flex-column">
+                    <p-card
+                        class="flex-auto flex justify-content-center align-items-center"
+                    >
+                        <i class="pi pi-truck" style="font-size: 2.5rem"></i>
+                        <h3>Summary</h3>
+                        <div class="flex flex-column">
+                            <h4 class="summary">Name:</h4>
+                            <p>
+                                {{ adressForm.get("firstName")!.value }}
+                                {{ adressForm.get("lastName")!.value }}
+                            </p>
+                            <h4 class="summary">Address:</h4>
+                            <p>
+                                {{ adressForm.get("street")!.value }},
+                                {{ adressForm.get("streetNumber")!.value }},
+                                {{ adressForm.get("postalCode")!.value }}
+                                {{ adressForm.get("city")!.value }},
+                                {{ adressForm.get("country")!.value?.name }}
+                            </p>
+                            <h4 class="summary">Delivery Option:</h4>
+                            <p>
+                                {{ deliveryForm.get("deliveryOption")!.value }}
+                            </p>
+                            <h4 class="summary">Payment Method:</h4>
+                            <p>
+                                <i [class]="getPaymentOptionIcon()"></i>
+                                {{ paymentForm.get("paymentOption")!.value }}
+                            </p>
+                            <p-divider />
+                            <table>
+                                <tr>
+                                    <td>Product Price:</td>
+                                    <td style="text-align: right">
+                                        {{ productSum | number : ".2-2" }}€
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Processing Fee:</td>
+                                    <td style="text-align: right">
+                                        {{ 8 | number : ".2-2" }}€
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Delivery Fee:</td>
+                                    <td style="text-align: right">
+                                        {{ deliveryFee | number : ".2-2" }}€
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Total Sum:</b></td>
+                                    <td style="text-align: right">
+                                        <b>{{ total | number : ".2-2" }}€</b>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </p-card>
+
+                    <div class="flex pt-4 justify-content-between">
+                        <p-button
+                            label="Back"
+                            icon="pi pi-arrow-left"
+                            (onClick)="prevCallback.emit()"
+                        ></p-button>
+                        <p-button
+                            label="Finish"
+                            icon="pi pi-check"
+                            iconPos="right"
+                            severity="success"
+                            [routerLink]="['/success']"
+                            (onClick)="resetCart()"
+                        ></p-button>
+                    </div>
+                </div>
+            </ng-template>
+        </p-stepperPanel>
+    </p-stepper>
+</div>

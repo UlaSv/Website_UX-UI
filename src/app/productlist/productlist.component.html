@@ -1,0 +1,270 @@
+<div class="main-page">
+    <div style="margin-bottom: 3em">
+        <div class="header">
+            <input
+                type="text"
+                [(ngModel)]="searchInput"
+                placeholder="Search"
+                (keydown)="check($event)"
+                class="searchfield"
+                style="z-index: 9998"
+            />
+
+            <button
+                type="button"
+                class="button-selected2"
+                pButton
+                icon="pi pi-search"
+                [style]="{
+                    'font-size': '15px'
+                }"
+                (click)="search()"
+            ></button>
+
+            <button
+                pButton
+                *ngIf="selectedButton === 2"
+                class="button-selected"
+                icon="pi pi-th-large"
+                id="colbutton"
+                [style]="{
+                    'margin-left': '5px',
+                    float: 'right',
+                    'margin-right': '15px'
+                }"
+                (click)="selectButton(2)"
+            ></button>
+            <button
+                pButton
+                *ngIf="selectedButton === 1"
+                class="button-deselected"
+                icon="pi pi-th-large"
+                id="colbutton"
+                [style]="{
+                    'margin-left': '5px',
+                    float: 'right',
+                    'margin-right': '15px'
+                }"
+                (click)="selectButton(2)"
+            ></button>
+            <button
+                pButton
+                *ngIf="selectedButton === 1"
+                class="button-selected"
+                icon="pi pi-bars"
+                value="1"
+                id="listbutton"
+                (click)="selectButton(1)"
+                [style]="{ float: 'right' }"
+            ></button>
+            <button
+                pButton
+                *ngIf="selectedButton === 2"
+                class="button-deselected"
+                icon="pi pi-bars"
+                value="1"
+                id="listbutton"
+                (click)="selectButton(1)"
+                [style]="{ float: 'right' }"
+            ></button>
+        </div>
+    </div>
+    <div class="show-more">
+        <span (click)="toggle()" class="arrow">{{
+            isExpanded ? "▲ Filter" : "▼ Filter "
+        }}</span>
+        <div *ngIf="isExpanded">
+            <div class="filter-column2">
+                <p-accordion [activeIndex]="0">
+                    <p-accordionTab header="Gender ({{ selectedGenderCount }})">
+                        <div *ngFor="let gender of filterGenders">
+                            <p-checkbox
+                                name="gender"
+                                value="{{ gender }}"
+                                [(ngModel)]="chosenGenders"
+                                (onChange)="onFilter()"
+                            ></p-checkbox>
+                            <label for="gender" style="margin-left: 5px">{{
+                                gender
+                            }}</label>
+                        </div>
+                    </p-accordionTab>
+                    <p-accordionTab
+                        header="Category ({{ selectedCategoryCount }})"
+                    >
+                        <div *ngFor="let category of filterCategory">
+                            <p-checkbox
+                                name="category"
+                                value="{{ category }}"
+                                [(ngModel)]="chosenCategories"
+                                (onChange)="onFilter()"
+                            ></p-checkbox>
+                            <label for="category" style="margin-left: 5px">{{
+                                category
+                            }}</label>
+                        </div>
+                    </p-accordionTab>
+                    <p-accordionTab header="Brands ({{ selectedBrandCount }})">
+                        <div *ngFor="let brand of filterBrands">
+                            <p-checkbox
+                                name="brand"
+                                value="{{ brand }}"
+                                [(ngModel)]="chosenBrands"
+                                (onChange)="onFilter()"
+                            ></p-checkbox>
+                            <label
+                                for="brand"
+                                style="margin-left: 5px; font-size: small"
+                                >{{ brand }}</label
+                            >
+                        </div>
+                    </p-accordionTab>
+                    <p-accordionTab header="Price">
+                        <div style="display: grid">
+                            <label
+                                style="font-size: smaller; margin-bottom: 20px"
+                                >Select the maximum price (€):
+                            </label>
+
+                            <input
+                                type="text"
+                                pInputText
+                                [(ngModel)]="selectedMaxPrice"
+                                class="w-full mb-3"
+                                readonly
+                                style="
+                                    border-color: transparent;
+                                    text-align: center;
+                                    font-weight: bold;
+                                    font-size: 18px;
+                                "
+                            />
+
+                            <p-slider
+                                [(ngModel)]="selectedMaxPrice"
+                                class="w-full"
+                                (onSlideEnd)="onFilter()"
+                                [max]="maxPrice + 1"
+                                [min]="0"
+                            ></p-slider>
+                        </div>
+                    </p-accordionTab>
+                </p-accordion>
+            </div>
+        </div>
+    </div>
+    <div class="grid-container">
+        <div
+            class="filter-column"
+            style="
+                margin-left: -12%;
+
+                width: 13%;
+                position: fixed;
+            "
+        >
+            <p-accordion [activeIndex]="0">
+                <p-accordionTab header="Gender ({{ selectedGenderCount }})">
+                    <div *ngFor="let gender of filterGenders">
+                        <p-checkbox
+                            name="gender"
+                            value="{{ gender }}"
+                            [(ngModel)]="chosenGenders"
+                            (onChange)="onFilter()"
+                        ></p-checkbox>
+                        <label for="gender" style="margin-left: 5px">{{
+                            gender
+                        }}</label>
+                    </div>
+                </p-accordionTab>
+                <p-accordionTab header="Brands ({{ selectedBrandCount }})">
+                    <div *ngFor="let brand of filterBrands">
+                        <p-checkbox
+                            name="brand"
+                            value="{{ brand }}"
+                            [(ngModel)]="chosenBrands"
+                            (onChange)="onFilter()"
+                        ></p-checkbox>
+                        <label
+                            for="brand"
+                            style="margin-left: 5px; font-size: small"
+                            >{{ brand }}</label
+                        >
+                    </div>
+                </p-accordionTab>
+                <p-accordionTab header="Category ({{ selectedCategoryCount }})">
+                    <div *ngFor="let category of filterCategory">
+                        <p-checkbox
+                            name="category"
+                            value="{{ category }}"
+                            [(ngModel)]="chosenCategories"
+                            (onChange)="onFilter()"
+                        ></p-checkbox>
+                        <label for="category" style="margin-left: 5px">{{
+                            category
+                        }}</label>
+                    </div>
+                </p-accordionTab>
+                <p-accordionTab header="Price">
+                    <div style="display: grid">
+                        <label style="font-size: smaller; margin-bottom: 20px"
+                            >Select the maximum price (€):
+                        </label>
+
+                        <input
+                            type="text"
+                            pInputText
+                            [(ngModel)]="selectedMaxPrice"
+                            class="w-full mb-3"
+                            readonly
+                            style="
+                                border-color: transparent;
+                                text-align: center;
+                                font-weight: bold;
+                                font-size: 18px;
+                            "
+                        />
+
+                        <p-slider
+                            [(ngModel)]="selectedMaxPrice"
+                            class="w-full"
+                            (onSlideEnd)="onFilter()"
+                            [max]="maxPrice + 1"
+                            [min]="0"
+                        ></p-slider>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+        </div>
+
+        <div class="content">
+            <div *ngIf="selectedButton === 1">
+                <div *ngFor="let product of products">
+                    <app-productitem [product]="product"></app-productitem>
+                </div>
+            </div>
+            <div *ngIf="selectedButton === 2" style="margin-top: auto">
+                <div *ngFor="let product of products2">
+                    <app-productgrid [product2]="product"></app-productgrid>
+                </div>
+            </div>
+            <div class="empty" *ngIf="noProducts">
+                <div class="pi pi-filter-slash"></div>
+                &nbsp; No results match the filter criteria.
+            </div>
+            <div class="button">
+                <button
+                    pButton
+                    type="button"
+                    *ngIf="!isLoading && !noProducts && shouldShowLoadButton()"
+                    label="Load more items"
+                    (click)="Load()"
+                ></button>
+                <p-progressSpinner
+                    *ngIf="isLoading"
+                    [style]="{ width: '50px', height: '50px' }"
+                ></p-progressSpinner>
+            </div>
+        </div>
+    </div>
+</div>

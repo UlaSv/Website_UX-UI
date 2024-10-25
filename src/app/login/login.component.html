@@ -1,0 +1,61 @@
+<div class="container">
+    <h1>Login</h1>
+    <div class="form-container">
+        <form [formGroup]="loginForm">
+            <div class="form-group">
+                <p-floatLabel>
+                    <input
+                        pInputText
+                        formControlName="email"
+                        id="email"
+                        type="email"
+                    />
+                    <label for="email">Email</label>
+                </p-floatLabel>
+                <div class="error-messages">
+                    <small
+                        *ngIf="email!.touched && email!.errors?.['required']"
+                    >
+                        Sorry, you must enter your email address!
+                    </small>
+                    <small *ngIf="email!.dirty && email!.errors?.['email']">
+                        Sorry, you must enter a valid email address!
+                    </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <p-floatLabel>
+                    <input
+                        pInputText
+                        formControlName="password"
+                        id="password"
+                        type="password"
+                    />
+                    <label for="password">Password</label>
+                </p-floatLabel>
+                <div class="error-messages">
+                    <small
+                        *ngIf="password!.touched && password!.errors?.['required']"
+                    >
+                        Sorry, you must enter your password!
+                    </small>
+                    <small
+                        *ngIf="password!.dirty && password!.errors?.['minlength']"
+                    >
+                        Sorry, your password must be at least 8 characters long!
+                    </small>
+                </div>
+            </div>
+            <div class="button-container">
+                <button
+                    pButton
+                    pRipple
+                    type="submit"
+                    label="Login"
+                    id="login-button"
+                    class="p-button-success"
+                ></button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<nav>
+    <div class="menu">
+        <a href="/" id="logo">
+            <img
+                id="logo-img"
+                src="./assets/laundry.png"
+                style="height: 3em; width: 3em"
+            />
+            <span id="title">&nbsp;&nbsp;Laundry</span>
+        </a>
+        <div class="menu-entries">
+            <p-button
+                [routerLink]="['login']"
+                [text]="true"
+                icon="pi pi-sign-in"
+                label="Log in"
+            >
+            </p-button>
+            <p-button
+                [routerLink]="['register']"
+                [text]="true"
+                icon="pi pi-user-plus"
+                label="Register"
+            >
+            </p-button>
+
+            <div>
+                <div
+                    class="test"
+                    style="
+                        display: flex;
+                        width: 80px;
+                        height: 46px;
+                        justify-content: center;
+                        align-items: center;
+                        align-self: center;
+                        align-content: center;
+                    "
+                >
+                    <i
+                        *ngIf="this.amount != 0"
+                        class="pi pi-shopping-cart button-like"
+                        pBadge
+                        [value]="this.amount.toString()"
+                        [hidden]="this.amount === 0"
+                        style="
+                            font-size: 1.5rem;
+                            color: #3b82f6;
+                            cursor: pointer;
+                        "
+                        severity="success"
+                        (click)="cart()"
+                    ></i>
+                    <i
+                        *ngIf="this.amount === 0"
+                        class="pi pi-shopping-cart button-like"
+                        style="
+                            font-size: 1.5rem;
+                            color: #3b82f6;
+                            cursor: pointer;
+                        "
+                        severity="success"
+                        (click)="cart()"
+                    ></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

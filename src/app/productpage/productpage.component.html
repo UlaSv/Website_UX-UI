@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="img">
+        <p-image src="./assets/products/images/{{ this.color }}.jpg" height="600px" width="auto" [preview]="true">
+        </p-image>
+    </div>
+    <div class="img2">
+        <p-image src="./assets/products/images/{{ this.color }}.jpg" height="450px" width="auto" [preview]="true">
+        </p-image>
+    </div>
+
+    <div class="text">
+        <div class="name">
+            <b>{{ product.name }}</b>
+        </div>
+        <div class="brand">{{ product.brand }}</div>
+        <div class="price">
+            <b>{{ product.price }} €</b>
+        </div>
+
+        <p-divider></p-divider>
+
+        <div *ngIf="colorname === undefined">
+            Color: {{ this.product.colors.at(0)?.color_name }}<br />
+        </div>
+        <div *ngIf="colorname">Color: {{ colorname }}<br /></div>
+
+        <div class="container2">
+            <div *ngFor="let color of product.colors; let i = index" style="margin-top: 10px"
+                [routerLink]="['/products', product.id]" [queryParams]="{
+                    color: product.colors.at(i)?.color_id,
+                    size: size
+                }">
+                <div class="radio-container">
+                    <img src="./assets/products/images/{{ color.color_id }}.jpg" />
+                    <input type="radio" [style]="{ 'accent-color': color.color_hex }" name="item"
+                        id="{{ color.color_id }}" (change)="changeColor(color.color_name, i)"
+                        [checked]="color.color_id === this.colorstring" />
+                </div>
+            </div>
+        </div>
+
+        <p-divider></p-divider>
+        <label> Size: <br /> </label>
+        <select class="dropdown" id="drop" (change)="changeSize()">
+            <option id="sizetest" *ngFor="let size of product.sizes; let i = index" [value]="size"
+                [selected]="size === this.sizestring">
+                {{ size }}
+            </option>
+        </select>
+
+        <div>
+            <label>Quantity:</label><br />
+            <select class="quant" id="quant" (change)="changeQuant()">
+                <option id="sizetest" *ngFor="let quant of quantity; let i = index" [value]="quant">
+                    {{ quant }}
+                </option>
+            </select>
+            <p-toast [breakpoints]="{ '920px': { width: '100%', right: '0', left: '0' } }" />
+            <button class="cart" (click)="addToCart(this.product.id, this.color, size, quant)">
+                <i class="pi pi-cart-plus"></i> &nbsp; Add to cart
+            </button>
+
+            <button class="fav" style="margin-right: 0" (click)="favorite()">
+                <i *ngIf="!favor" class="pi pi-heart" style="color: rgb(102, 102, 243)"></i><i *ngIf="favor"
+                    class="pi pi-heart-fill" style="color: red"></i>
+            </button>
+        </div>
+
+        <p-divider></p-divider>
+
+        <div class="details">
+            <b>Description:</b>
+            <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+                takimata sanctus est Lorem ipsum dolor sit amet.
+            </p>
+        </div>
+    </div>
+</div>

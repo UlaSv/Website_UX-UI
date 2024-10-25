@@ -1,0 +1,52 @@
+.p-button {
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+#help {
+    font-size: 12px;
+    color: #999;
+}
+.field {
+    margin-bottom: 25px;
+}
+.summary {
+    margin-bottom: -10px;
+    margin-top: 10px;
+}
+.name {
+}
+
+.street {
+}
+
+.nr {
+    width: 100px;
+}
+.location {
+}
+.manda {
+    margin-left: 55%;
+}
+
+@media screen and (max-width: 600px) {
+    .name {
+        width: 110%;
+    }
+    .street {
+        width: 110%;
+    }
+    .nr {
+        width: 40%;
+    }
+    .location {
+        width: 110%;
+    }
+    .manda {
+        margin-left: 25%;
+    }
+}
+@media screen and (max-width: 640px) {
+    :host ::ng-deep .p-stepper-title {
+        font-size: 0px;
+    }
+}

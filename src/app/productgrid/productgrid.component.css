@@ -1,0 +1,99 @@
+col {
+    float: left;
+}
+.three {
+    width: 30%;
+    text-align: left;
+    vertical-align: middle;
+    padding: 8px;
+    float: left;
+    min-height: 300px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 20px;
+    border: 1px solid rgb(228, 228, 228);
+    margin-left: 20px;
+}
+
+.container {
+    align-items: left;
+
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5px;
+}
+.three:hover {
+    outline: 2px solid rgb(235, 235, 235);
+}
+
+img {
+    max-width: 60%;
+    max-height: 60%;
+    display: block;
+    margin: 0 auto;
+}
+
+.brand {
+    color: grey;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+.name {
+    color: rgb(91, 90, 90);
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 5px;
+    height: 50px;
+    margin-bottom: 5px;
+}
+.price {
+    margin-top: 10px;
+    width: fit-content;
+    background-color: rgb(157, 205, 242);
+    border-radius: 10px;
+    border-color: rgb(64, 124, 172);
+    border-width: 1px;
+    padding: 5px 5px 5px 5px;
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+@media screen and (max-width: 970px) {
+    .container {
+        align-items: left;
+
+        grid-template-columns: 1fr 1fr;
+        column-gap: 5px;
+    }
+    .three {
+        width: 45%;
+        text-align: left;
+        vertical-align: middle;
+        padding: 8px;
+        float: left;
+        min-height: 300px;
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-top: 20px;
+        border: 1px solid rgb(228, 228, 228);
+    }
+}
+@media screen and (max-width: 635px) {
+    .container {
+        align-items: left;
+
+        grid-template-columns: 1fr;
+        column-gap: 5px;
+    }
+    .three {
+        width: 95%;
+        text-align: left;
+        vertical-align: middle;
+        padding: 8px;
+        float: left;
+        min-height: 300px;
+        margin-right: 10px;
+        margin-left: 0;
+        margin-top: 20px;
+        border: 1px solid rgb(228, 228, 228);
+    }
+}

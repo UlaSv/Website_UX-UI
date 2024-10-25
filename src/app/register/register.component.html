@@ -1,0 +1,279 @@
+<div class="page">
+    <h1>Registration</h1>
+    <p>Fields marked with * are required</p>
+    <form [formGroup]="registerForm">
+        <h2>Name</h2>
+        <div class="formgrid grid">
+            <div class="formgroup-inline col-12" style="align-items: center">
+                <div class="field-radiobutton">
+                    <p-radioButton
+                        name="gender"
+                        value="Mr"
+                        inputId="male"
+                        formControlName="gender"
+                    ></p-radioButton>
+                    <label for="male">Mr.</label>
+                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton
+                        name="gender"
+                        value="Ms"
+                        inputId="female"
+                        formControlName="gender"
+                    ></p-radioButton>
+                    <label for="female">Ms.</label>
+                </div>
+
+                <div class="field-radiobutton">
+                    <p-radioButton
+                        name="gender"
+                        value="Other"
+                        inputId="other"
+                        formControlName="gender"
+                    ></p-radioButton>
+                    <input
+                        id="gender"
+                        type="text"
+                        formControlName="gender"
+                        placeholder="Other"
+                        pInputText
+                        style="width: 90%"
+                    />
+                </div>
+            </div>
+            <div class="flex">
+                <div class="field">
+                    <p-floatLabel>
+                        <input
+                            id="firstName"
+                            type="text"
+                            formControlName="firstName"
+                            pInputText
+                            style="width: 90%"
+                        />
+                        <label for="firstName">*First Name</label>
+                    </p-floatLabel>
+                    <small
+                        class="p-error"
+                        *ngIf="firstName!.touched && firstName!.errors?.['required']"
+                        >Please enter your first name!</small
+                    >
+                </div>
+                <div class="field ml-5">
+                    <p-floatLabel>
+                        <input
+                            id="lastName"
+                            type="text"
+                            formControlName="lastName"
+                            pInputText
+                            style="width: 90%"
+                        />
+                        <label for="lastName">*Last Name</label>
+                    </p-floatLabel>
+                    <small
+                        class="p-error"
+                        *ngIf="lastName!.touched && lastName!.errors?.['required']"
+                        >Please enter your last name!</small
+                    >
+                </div>
+            </div>
+            <div class="flex">
+                <div class="field">
+                    <p-floatLabel>
+                        <input
+                            id="email"
+                            type="text"
+                            formControlName="email"
+                            pInputText
+                            style="width: 90%"
+                        />
+                        <label for="email">*Email</label>
+                    </p-floatLabel>
+                    <div class="p-error">
+                        <small
+                            *ngIf="email!.touched && email!.errors?.['required']"
+                        >
+                            Sorry, you must enter your email address!
+                        </small>
+                        <small *ngIf="email!.dirty && email!.errors?.['email']">
+                            Sorry, you must enter a valid email address!
+                        </small>
+                    </div>
+                    <div style="width: 90%">
+                        <small id="help"
+                            >You will need your email to log in to the
+                            store</small
+                        >
+                    </div>
+                </div>
+                <div class="field ml-5">
+                    <p-floatLabel>
+                        <input
+                            id="password"
+                            type="password"
+                            formControlName="password"
+                            pInputText
+                            style="width: 90%"
+                        />
+                        <label for="password">*Password</label>
+                    </p-floatLabel>
+                    <div class="p-error">
+                        <small
+                            *ngIf="password!.touched && password!.invalid && password!.errors?.['required']"
+                        >
+                            Sorry, you must enter your password!
+                        </small>
+                        <small
+                            *ngIf="password!.dirty && password!.invalid && password!.errors?.['minlength']"
+                        >
+                            Sorry, your password must be at least 8 characters
+                            long!
+                        </small>
+                    </div>
+                    <div style="width: 80%">
+                        <small id="help"
+                            >Your password needs at least 8 characters</small
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Birthdate</h2>
+
+        <p-calendar
+            id="birthdate"
+            formControlName="birthdate"
+            placeholder="*Birthday"
+            [iconDisplay]="'input'"
+            [showIcon]="true"
+            dateFormat="dd.mm.yy"
+            [maxDate]="maxDate"
+            [style]="{ width: '40%' }"
+        ></p-calendar>
+
+        <small
+            class="p-error"
+            *ngIf="birthdate!.touched && birthdate!.errors?.['required']"
+            >Please select your birthdate!</small
+        >
+
+        <h2>Address</h2>
+        <div formGroupName="address" class="formgrid grid">
+            <div class="flex">
+                <div class="field">
+                    <p-floatLabel>
+                        <input
+                            id="street"
+                            type="text"
+                            formControlName="street"
+                            pInputText
+                            style="width: 90%"
+                        />
+                        <label for="street">*Street</label>
+                    </p-floatLabel>
+                    <small
+                        class="p-error"
+                        *ngIf="street!.touched && street!.errors?.['required']"
+                        >Please enter your street!</small
+                    >
+                </div>
+                <div class="field ml-5">
+                    <p-floatLabel>
+                        <input
+                            id="streetNumber"
+                            type="text"
+                            formControlName="streetNumber"
+                            style="width: 40%"
+                            pInputText
+                        />
+                        <label for="streetNumber">*No.</label>
+                    </p-floatLabel>
+                    <div class="p-error">
+                        <small
+                            *ngIf="streetNumber!.touched && streetNumber!.errors?.['required']"
+                        >
+                            Sorry, you must enter your street number!
+                        </small>
+                        <small
+                            *ngIf="streetNumber!.dirty && streetNumber!.errors?.['pattern']"
+                        >
+                            Sorry, you must only enter numbers!
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="field">
+                    <p-floatLabel>
+                        <input
+                            id="postalCode"
+                            type="text"
+                            formControlName="postalCode"
+                            pInputText
+                            style="width: 90%"
+                        />
+                        <label for="postalCode">*Postal Code</label>
+                    </p-floatLabel>
+                    <div class="p-error">
+                        <small
+                            *ngIf="postalCode!.touched && postalCode!.errors?.['required']"
+                        >
+                            Sorry, you must enter your postal number!
+                        </small>
+                        <small
+                            *ngIf="postalCode!.dirty && postalCode!.errors?.['pattern']"
+                        >
+                            Sorry, you must only enter numbers!
+                        </small>
+                    </div>
+                </div>
+                <div class="field ml-5">
+                    <p-floatLabel>
+                        <input
+                            id="city"
+                            type="text"
+                            formControlName="city"
+                            pInputText
+                            style="width: 90%"
+                        />
+                        <label for="city">*City</label>
+                    </p-floatLabel>
+                    <small
+                        class="p-error"
+                        *ngIf="city!.touched && city!.errors?.['required']"
+                        >Please enter your city!</small
+                    >
+                </div>
+            </div>
+            <div class="field">
+                <p-dropdown
+                    formControlName="country"
+                    [options]="countries"
+                    optionLabel="name"
+                    placeholder="*Country"
+                    [style]="{ width: '100%' }"
+                ></p-dropdown>
+                <small
+                    class="p-error"
+                    *ngIf="country!.touched && country!.errors?.['required']"
+                    >Please select your country!</small
+                >
+            </div>
+            <div class="field col-12 md:col-12" style="width: 90%">
+                <small id="help-address"
+                    >Your address will be used as the default shipping
+                    address</small
+                >
+            </div>
+        </div>
+        <button
+            pButton
+            pRipple
+            type="submit"
+            label="Submit"
+            id="submit-button"
+            class="p-button-success"
+        ></button>
+    </form>
+</div>

@@ -1,0 +1,22 @@
+<div
+    class="container"
+    [routerLink]="['/products', product.id]"
+    [queryParams]="{
+        color: product.colors.at(0)?.color_id,
+        size: product.sizes.at(0)
+    }"
+    style="cursor: pointer"
+>
+    <img src="./assets/products/images/{{ product.id }}.jpg" class="image" />
+    <div class="text">
+        <div class="brand">{{ product.brand }}</div>
+        <div class="name">
+            <b>{{ product.name }}</b>
+        </div>
+        <div class="price" style="border-style: solid">
+            {{ product.price }} €
+        </div>
+    </div>
+</div>
+
+<p-divider></p-divider>

@@ -1,0 +1,135 @@
+:host {
+    display: block;
+}
+
+.main-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    column-count: 3;
+    column-width: 200px;
+    column-gap: 20px;
+}
+
+.header {
+    height: 80px;
+    background-color: rgb(244, 244, 244);
+    align-items: center;
+    align-content: center;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 5px 5px 5px 5px;
+}
+
+.button-selected {
+    color: white;
+    background-color: rgb(102, 102, 243);
+}
+
+.button-deselected {
+    background-color: white;
+    color: rgb(103, 103, 103);
+}
+
+.searchfield {
+    margin-left: 15px;
+    width: 70%; /*700px*/
+    height: 46px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: rgb(102, 102, 243);
+    padding: 5px 5px 5px 5px;
+    font-size: 18px;
+}
+
+.button-selected2 {
+    color: rgb(102, 102, 243);
+    background-color: transparent;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: transparent;
+    padding: 5px 5px 5px 5px;
+    height: 46px;
+    margin-left: -48px;
+}
+
+.button,
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.content {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 5% 95%;
+}
+
+.filter-column {
+    grid-column: 1;
+}
+
+.empty {
+    font-size: 20px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.show-more {
+    display: none;
+}
+.filter-column2 {
+    grid-column: 1;
+}
+@media screen and (max-width: 1400px) {
+    .filter-column {
+        display: none;
+    }
+    .show-more {
+        display: block;
+        margin-bottom: 2em;
+    }
+    .button-selected2 {
+        color: rgb(102, 102, 243);
+        background-color: transparent;
+        border-radius: 10px;
+        border-width: 1px;
+        border-color: transparent;
+        padding: 5px 5px 5px 5px;
+        height: 46px;
+        margin-left: -48px;
+        width: 42px;
+    }
+    .button-selected {
+        color: white;
+        background-color: rgb(102, 102, 243);
+        width: 42px;
+    }
+
+    .button-deselected {
+        background-color: white;
+        color: rgb(103, 103, 103);
+        width: 42px;
+    }
+    .searchfield {
+        margin-left: 5px;
+        margin-right: 6px;
+        width: 70%; /*700px*/
+        height: 46px;
+        border-radius: 10px;
+        border-width: 1px;
+        border-color: rgb(102, 102, 243);
+        padding: 5px 5px 5px 5px;
+        font-size: 18px;
+    }
+}

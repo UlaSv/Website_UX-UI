@@ -1,0 +1,27 @@
+.field,
+.field-radiobutton {
+    margin-bottom: 25px;
+}
+.page {
+    padding: 3%;
+    max-width: 650px;
+    overflow: hidden;
+    margin-left: 150px;
+}
+.p-button {
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+#help {
+    font-size: 12px;
+    color: #999;
+}
+
+@media screen and (max-width: 710px) {
+    .page {
+        padding: 3%;
+        max-width: 650px;
+        overflow: hidden;
+        margin-left: 0;
+    }
+}

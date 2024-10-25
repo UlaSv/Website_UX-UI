@@ -1,0 +1,118 @@
+<b style="font-size: 48px; margin-bottom: 5rem; margin-top: 1rem"
+    >Shopping Cart</b
+>
+
+<div
+    *ngIf="items.length === 0"
+    style="
+        background-color: white;
+        border-style: none;
+        border: none;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        margin-top: 5rem;
+    "
+>
+    You havent added any products to the cart yet.
+</div>
+<div class="container2">
+    <div *ngIf="items.length > 0" class="left-column">
+        <div *ngFor="let item of items">
+            <div class="container">
+                <img
+                    src="./assets/products/images/{{ item.color }}.jpg"
+                    class="image"
+                    style="cursor: pointer; z-index: 9998"
+                    [routerLink]="['/products', item.id]"
+                    [queryParams]="{
+                        color: item.color,
+                        size: item.size
+                    }"
+                />
+                <div class="text">
+                    <div
+                        style="cursor: pointer; z-index: 9998"
+                        [routerLink]="['/products', item.id]"
+                        [queryParams]="{
+                            color: item.color,
+                            size: item.size
+                        }"
+                    >
+                        <div class="brand">{{ getBrand(item.id) }}</div>
+                        <div
+                            (click)="del(item.color)"
+                            style="cursor: pointer; float: right; z-index: 9999;margin-right: 10px;"
+                        >
+                            <i
+                                class="pi pi-trash"
+                                style="font-size: 1.5rem; color: grey"
+                            ></i>
+                        </div>
+                        <div class="name">
+                            <b>{{ getName(item.id) }}</b>
+                        </div>
+                        <div class="brand" style="margin-top: 5px">
+                            Color: {{ getColorName(item.id, item.color) }}
+                        </div>
+                        <div class="brand" style="margin-top: 5px">
+                            Size: {{ item.size }}
+                        </div>
+                    </div>
+                    <div class="price" style="margin-right: 10px">
+                        <span> </span>
+                        <span style=
+                            >{{
+                                (item.quantity * getPrice(item.id)).toFixed(2)
+                            }}
+                            €
+                        </span>
+                    </div>
+                    <div class="incre">
+                        <div class="hours">
+                            <button (click)="decrement(item.color, item.size)">
+                                <i class="pi pi-minus"></i>
+                            </button>
+                            <input
+                                type="number"
+                                id="hours{{ item.color }}{{ item.size }}"
+                                value="{{ item.quantity }}"
+                                readonly
+                            />
+                            <button (click)="increment(item.color, item.size)">
+                                <i class="pi pi-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="items.length > 0" class="right-column">
+        <div class="checkout">
+            <b style="font-size: 36px">Summary</b>
+            <div class="checkitems" style="margin-top: 10px">
+                <span>Subtotal:</span>
+                <span>{{ this.total.toFixed(2) }} €</span>
+            </div>
+            <div class="checkitems">
+                <span>Processing Fee:</span> <span>8.00 €</span>
+            </div>
+            <hr
+                style="
+                    background-color: black;
+                    height: 2px;
+                    border-color: black;
+                "
+            />
+
+            <div class="checkitems">
+                <span>Total:</span>
+                <span>{{ this.totalSum.toFixed(2) }} €</span>
+            </div>
+            <button class="cart" [routerLink]="['/checkout']">
+                <i class="pi pi-lock"></i> Checkout
+            </button>
+        </div>
+    </div>
+</div>

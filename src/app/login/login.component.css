@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container {
+    width: 20rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.p-floatlabel {
+    margin-bottom: 0.5rem;
+}
+
+.p-inputtext {
+    padding: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.error-messages {
+    margin-top: 0.5rem;
+    color: red;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
